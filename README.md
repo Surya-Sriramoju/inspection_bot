@@ -1,7 +1,7 @@
 # InspectorBot: Autonomous Industry Inspection System
 
-![GitHub CI](https://github.com/tarunreddyy/InspectorBot/actions/workflows/ci.yml/badge.svg)
-[![codecov](https://codecov.io/gh/tarunreddyy/InspectorBot/branch/main/graph/badge.svg?token=639bc142-78af-47ce-9058-b08dd74ae79c)](https://codecov.io/gh/tarunreddyy/InspectorBot)
+![GitHub CI](https://github.com/tarunreddyy/inspector_bot/actions/workflows/ci.yml/badge.svg)
+[![codecov](https://codecov.io/gh/tarunreddyy/inspector_bot/branch/main/graph/badge.svg?token=639bc142-78af-47ce-9058-b08dd74ae79c)](https://codecov.io/gh/tarunreddyy/inspector_bot)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 InspectorBot is an innovative autonomous robot designed for efficient and accurate industry inspection. Utilizing advanced SLAM (Simultaneous Localization and Mapping) techniques, InspectorBot navigates industries autonomously, identifying and marking anomalies using ArUco markers.
@@ -20,12 +20,12 @@ InspectorBot is an innovative autonomous robot designed for efficient and accura
 ## UML Diagram
 
 The UML diagram illustrates the architecture and interaction of classes within InspectorBot.
-![InspectorBot UML diagram](UML/UML_diagram.pdf)
+![InspectorBot UML diagram](UML/UML_diagram.png)
 
 ## Activity Diagram
 
 The activity diagram demonstrates the workflow of InspectorBot, highlighting the steps involved in autonomous navigation and anomaly detection.
-![Autonomous Navigation and Anomaly Detection activity diagram](UML/UML_activity.pdf)
+![Autonomous Navigation and Anomaly Detection activity diagram](UML/UML_activity.png)
 
 ## Quad Chart
 
@@ -36,7 +36,7 @@ The quad chart provides a visual summary of InspectorBot's capabilities and deve
 
 [Product Backlog Google Sheet](https://docs.google.com/spreadsheets/d/1riEoFAD4eDPTp7oa7tnZANUklh0wJGMXKnpVL7vbjc4/edit?usp=sharing)
 
-## The video explanation of the phase one of this project can be found [here](https://drive.google.com/file/d/138be7VZhMl8rAgM4BnjkiJJUl4-g0jvQ/view?usp=sharing)
+## The video explanation of the phase one of this project can be found [here](https://drive.google.com/file/d/1vZ3_9K9WZzgpQl5QuAfxAEsRZVFMnTK0/view?usp=sharing)
 
 ## Technologies and Tools
 
@@ -72,7 +72,7 @@ Follow these steps to set up and run the InspectorBot:
 
 ## Key Features
 
-- Autonomous navigation in warehouse environments using SLAM.
+- Autonomous navigation in industrial environments using SLAM.
 - Anomaly detection and marking using ArUco markers.
 - Integration with Gazebo for realistic simulation.
 - Continuous integration and code coverage setup on GitHub.

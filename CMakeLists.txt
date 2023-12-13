@@ -53,7 +53,7 @@ if(BUILD_TESTING)
   find_package(GTest REQUIRED)
 
   # Add the test executable
-  add_executable(inspector_bot_test src/InspectorBotTest.cpp)
+  add_executable(inspector_bot_test test/InspectorBotTest.cpp)
   ament_target_dependencies(inspector_bot_test rclcpp GTest)
 
   # Register the test with CTest
