@@ -59,8 +59,8 @@ Follow these steps to set up and run the InspectorBot:
 
 ```bash
 # Clone the repository:
-  git clone https://github.com/tarunreddyy/InspectorBot.git
-  cd InspectorBot
+  git clone https://github.com/tarunreddyy/inspector_bot.git
+  cd inspector_bot
 
 # Build the project:
   colcon build
