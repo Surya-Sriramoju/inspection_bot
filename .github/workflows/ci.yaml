@@ -1,0 +1,63 @@
+name: ROS2 CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-22.04
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Install ROS 2 Humble packages
+        run: |
+          sudo apt update
+          sudo apt install -y software-properties-common
+          sudo add-apt-repository universe
+          sudo apt update && sudo apt install -y curl
+          sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key \
+            -o /usr/share/keyrings/ros-archive-keyring.gpg
+          echo "deb [arch=$(dpkg --print-architecture) \
+            signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] \
+            http://packages.ros.org/ros2/ubuntu \
+            $(. /etc/os-release && echo $UBUNTU_CODENAME) main" \
+            | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+          sudo apt update
+          sudo apt install -y ros-humble-ros-base python3-colcon-common-extensions
+          sudo apt install -y lcov
+          sudo apt install ros-humble-gazebo-ros-pkgs
+
+      - name: Build with coverage
+        run: |
+          source /opt/ros/humble/setup.bash
+          colcon build --cmake-args -DCOVERAGE=1 --packages-select inspection_bot
+          cat log/latest_build/inspection_bot/stdout_stderr.log
+          find build/inspection_bot/ | grep -E 'gcno'
+
+      - name: Run tests and check code
+        run: |
+          source /opt/ros/humble/setup.bash
+          colcon test --packages-select inspection_bot
+          cat log/latest_test/inspection_bot/stdout_stderr.log
+          find build/inspection_bot/ | grep -E 'gcda'
+          colcon test-result --verbose
+
+      - name: Generate test coverage report
+        run: |
+          source install/setup.bash
+          lcov --directory build/inspection_bot/ --capture --output-file coverage.info
+          lcov --remove coverage.info '/opt/ros/*' '*/test/*' --output-file coverage_cleaned.info
+          lcov --list coverage_cleaned.info
+
+      - name: Upload coverage result to CodeCov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage_cleaned.info
+          fail_ci_if_error: true
+          verbose: true
