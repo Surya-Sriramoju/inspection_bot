@@ -17,6 +17,9 @@ find_package(std_msgs REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(nav_msgs REQUIRED)
+find_package(cv_bridge REQUIRED)
+find_package(OpenCV 4 REQUIRED)
+include_directories(include ${OpenCV_INCLUDE_DIRS})
 
 # Include directories
 include_directories(include/)
@@ -32,7 +35,7 @@ install(TARGETS
 )
 
 add_executable(detect_aruco src/ArucoMain.cpp src/ArucoDetect.cpp)
-ament_target_dependencies(detect_aruco rclcpp geometry_msgs)
+ament_target_dependencies(detect_aruco rclcpp geometry_msgs sensor_msgs cv_bridge OpenCV)
 
 # Install executables and/or libraries
 install(TARGETS

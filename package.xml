@@ -21,6 +21,8 @@
   <depend>tf2_ros</depend>
   <depend>std_msgs</depend>
   <depend>gazebo_ros_pkgs</depend>
+  <exec_depend>cv_bridge</exec_depend>
+  <exec_depend>opencv</exec_depend>
   
 
   <!-- <exec_depend>geometry_msgs</exec_depend> -->

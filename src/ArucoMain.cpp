@@ -13,6 +13,6 @@
 
 int main(int argc, char *argv[]) {
   rclcpp::init(argc, argv);
-  rclcpp::spin(std::make_shared<ArucoDetect>());
+  rclcpp::spin(std::make_shared<ArUcoDetectionNode>());
   rclcpp::shutdown();
 }
