@@ -12,7 +12,7 @@
  * navigation and inspection process using SLAM and ArUco markers.
  */
 
-#include "rclcpp/rclcpp.hpp"
+// #include "rclcpp/rclcpp.hpp"
 #include "InspectorBot.hpp"
 
 /**
@@ -25,8 +25,22 @@
  */
 int main(int argc, char **argv) {
     rclcpp::init(argc, argv);
-    auto node = std::make_shared<InspectorBot>();
-    rclcpp::spin(node);
+    InspectorBot inspector;
+
+    inspector.setLoc(2.0, 2.0);
+    inspector.goToLocation();
+    inspector.rotateBot();
+    inspector.setLoc(3.0, 2.0);
+    inspector.goToLocation();
+    inspector.rotateBot();
+    inspector.setLoc(4.0, 0.0);
+    inspector.goToLocation();
+    inspector.rotateBot();
+    inspector.setLoc(0.5, 4.0);
+    inspector.goToLocation();
+    inspector.rotateBot();
+
+    inspector.continueInspection();
+
     rclcpp::shutdown();
-    return 0;
 }
