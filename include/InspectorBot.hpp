@@ -3,6 +3,7 @@
 /**
  * @file InspectorBot.hpp
  * @author Tarun Trilokesh
+ * @author Sai Surya Sriramoju
  * @date 12/12/2023
  * @version 1.0
  * 
@@ -15,9 +16,15 @@
 #ifndef INSPECTOR_BOT_HPP_
 #define INSPECTOR_BOT_HPP_
 
-#include "rclcpp/rclcpp.hpp"
-#include "sensor_msgs/msg/laser_scan.hpp"
-#include "geometry_msgs/msg/twist.hpp"
+#include <rclcpp/rclcpp.hpp>
+#include <geometry_msgs/msg/twist.hpp>
+#include <sensor_msgs/msg/laser_scan.hpp>
+#include <nav_msgs/msg/odometry.hpp>
+
+#include <chrono>
+#include <iostream>
+#include <memory>
+#include <vector>
 
 /**
  * @brief The InspectorBot class.
@@ -36,3 +43,4 @@ class InspectorBot : public rclcpp::Node {
 };
 
 #endif  // INSPECTOR_BOT_HPP_
+

@@ -5,19 +5,33 @@
   <version>0.0.0</version>
   <description>ROS2 package for Inspection Bot</description>
   <maintainer email="tarunsaireddy1998@gmail.com">Tarun</maintainer>
+  <maintainer email="saisurya@umd.edu">Tarun</maintainer>
   <license>MIT</license>
 
+  <exec_depend>ros2launch</exec_depend>
   <buildtool_depend>ament_cmake</buildtool_depend>
 
   <depend>rclcpp</depend>
   <depend>gazebo_ros</depend>
   <depend>turtlebot3</depend>
   <depend>sensor_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
+  <depend>std_msgs</depend>
+  <depend>gazebo_ros_pkgs</depend>
+  
 
+  <!-- <exec_depend>geometry_msgs</exec_depend> -->
+  <!-- <exec_depend>sensor_msgs</exec_depend> -->
+
+  
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
+    <gazebo_ros gazebo_model_path="${prefix}/models"/>
   </export>
 </package>

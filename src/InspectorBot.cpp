@@ -40,3 +40,11 @@ void InspectorBot::scanCallback(const sensor_msgs::msg::
     // Process scan data and implement navigation logic
     // ...
 }
+
+
+
+
+
+
+
+

@@ -18,7 +18,8 @@ from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, ExecuteProcess
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch_ros.actions import Node 
+from launch_ros.actions import Node
+from launch.substitutions import LaunchConfiguration
 
 def generate_launch_description():
     """
@@ -38,6 +39,10 @@ def generate_launch_description():
 
     # Path to the custom SLAM Toolbox configuration file
     slam_config_path = os.path.join(pkg_inspection_bot, 'config', 'slam_config.yaml')
+    nav2_tb3 = get_package_share_directory('nav2_bringup')
+    launch_file_dir = os.path.join(get_package_share_directory('turtlebot3_gazebo'), 'launch')
+    use_sim_time = LaunchConfiguration('use_sim_time', default='true')
+    map_dir = os.path.join(get_package_share_directory('inspection_bot'), 'maps','my_map.yaml')
 
     # Launch Gazebo with the custom world
     gazebo = ExecuteProcess(
@@ -69,9 +74,57 @@ def generate_launch_description():
         output='screen',
         parameters=[slam_config_path, {'use_sim_time': True}]
     )
+    
+    aruco_node =  Node(
+            package='ros2_aruco',
+            executable='aruco_node',
+            name = "aruco_node"
+        )
+    
+    node_tf2_fp2laser = Node(
+    name='tf2_ros_fp_laser',
+    package='tf2_ros',
+    executable='static_transform_publisher',
+    output='screen',
+    arguments=['0', '0', '0', '0.0', '0.0', '0.0', 'base_footprint', 'laser'],   
+        )
+
+
+    ## tf2 - base_footprint to map
+    node_tf2_fp2map = Node(
+        name='tf2_ros_fp_map',
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        output='screen',
+        arguments=['0', '0', '0', '0.0', '0.0', '0.0', 'base_footprint', 'map'], 
+    )
+
+
+    ## tf2 - base_footprint to odom
+    node_tf2_fp2odom = Node(
+        name='tf2_ros_fp_odom',
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        output='screen',
+        arguments=['0', '0', '0', '0.0', '0.0', '0.0', 'base_footprint', 'odom']
+    )
+
+    robot_state_publisher_cmd = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(launch_file_dir, 'robot_state_publisher.launch.py')
+        ),
+        launch_arguments={'use_sim_time': use_sim_time}.items()
+    )
+
+    nav_launch = IncludeLaunchDescription(PythonLaunchDescriptionSource([
+                nav2_tb3 + '/launch/bringup_launch.py']),
+                launch_arguments={'map': map_dir,'params_file':nav2_tb3 + '/params/nav2_params.yaml','use_sim_time': use_sim_time}.items())
 
     return LaunchDescription([
         gazebo,
         spawn_tb3,
-        slam_toolbox
+        slam_toolbox,
+        aruco_node,
+        robot_state_publisher_cmd,
+        nav_launch
     ])
