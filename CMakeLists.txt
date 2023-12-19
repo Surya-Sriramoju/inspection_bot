@@ -21,15 +21,15 @@ find_package(nav_msgs REQUIRED)
 # Include directories
 include_directories(include/)
 
-# Declare a C++ executable
-# add_executable(inspector_bot_node src/main.cpp src/InspectorBot.cpp)
-# ament_target_dependencies(inspector_bot_node rclcpp rclcpp_action gazebo_ros turtlebot3 sensor_msgs std_msgs geometry_msgs nav_msgs)
+#Declare a C++ executable
+add_executable(inspector_bot_node src/main.cpp src/InspectorBot.cpp)
+ament_target_dependencies(inspector_bot_node rclcpp rclcpp_action gazebo_ros turtlebot3 sensor_msgs std_msgs geometry_msgs nav_msgs)
 
-# # Install executables and/or libraries
-# install(TARGETS
-#   inspector_bot_node
-#   DESTINATION lib/${PROJECT_NAME}
-# )
+# Install executables and/or libraries
+install(TARGETS
+  inspector_bot_node
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 add_executable(detect_aruco src/ArucoMain.cpp src/ArucoDetect.cpp)
 ament_target_dependencies(detect_aruco rclcpp geometry_msgs)

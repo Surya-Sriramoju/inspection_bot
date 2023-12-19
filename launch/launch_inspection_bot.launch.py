@@ -9,6 +9,7 @@ world, spawns the TurtleBot3 robot, and starts the SLAM Toolbox for autonomous
 navigation and mapping.
 
 @author Tarun Trilokesh
+@author Sai Surya Sriramoju
 @date 12/12/2023
 @version 1.0
 """
@@ -43,6 +44,8 @@ def generate_launch_description():
     launch_file_dir = os.path.join(get_package_share_directory('turtlebot3_gazebo'), 'launch')
     use_sim_time = LaunchConfiguration('use_sim_time', default='true')
     map_dir = os.path.join(get_package_share_directory('inspection_bot'), 'maps','my_map.yaml')
+    x_pose = LaunchConfiguration('x_pose', default='0.0')
+    y_pose = LaunchConfiguration('y_pose', default='0.0')
 
     # Launch Gazebo with the custom world
     gazebo = ExecuteProcess(
@@ -63,7 +66,9 @@ def generate_launch_description():
     # Include the TurtleBot3 spawn launch file
     spawn_tb3 = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(tb3_spawn_launch_file),
-        launch_arguments={'model': turtlebot3_model}.items()
+        launch_arguments={'model': turtlebot3_model,
+                        'x_pose': x_pose,
+                        'y_pose': y_pose}.items()
     )
 
     # SLAM Toolbox Node with custom configuration
@@ -81,33 +86,6 @@ def generate_launch_description():
             name = "aruco_node"
         )
     
-    node_tf2_fp2laser = Node(
-    name='tf2_ros_fp_laser',
-    package='tf2_ros',
-    executable='static_transform_publisher',
-    output='screen',
-    arguments=['0', '0', '0', '0.0', '0.0', '0.0', 'base_footprint', 'laser'],   
-        )
-
-
-    ## tf2 - base_footprint to map
-    node_tf2_fp2map = Node(
-        name='tf2_ros_fp_map',
-        package='tf2_ros',
-        executable='static_transform_publisher',
-        output='screen',
-        arguments=['0', '0', '0', '0.0', '0.0', '0.0', 'base_footprint', 'map'], 
-    )
-
-
-    ## tf2 - base_footprint to odom
-    node_tf2_fp2odom = Node(
-        name='tf2_ros_fp_odom',
-        package='tf2_ros',
-        executable='static_transform_publisher',
-        output='screen',
-        arguments=['0', '0', '0', '0.0', '0.0', '0.0', 'base_footprint', 'odom']
-    )
 
     robot_state_publisher_cmd = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -119,6 +97,13 @@ def generate_launch_description():
     nav_launch = IncludeLaunchDescription(PythonLaunchDescriptionSource([
                 nav2_tb3 + '/launch/bringup_launch.py']),
                 launch_arguments={'map': map_dir,'params_file':nav2_tb3 + '/params/nav2_params.yaml','use_sim_time': use_sim_time}.items())
+    
+    initial_pose_pub = ExecuteProcess(
+        cmd=[
+            'ros2', 'topic pub -1', '/initialpose', 'geometry_msgs/PoseWithCovarianceStamped', '"{ header: {stamp: {sec: 0, nanosec: 0}, frame_id: "map"}, pose: { pose: {position: {x: 0.0, y: 0.0, z: 0.0}, orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}}, } }"' 
+        ],
+        shell=True
+        )
 
     return LaunchDescription([
         gazebo,
@@ -126,5 +111,6 @@ def generate_launch_description():
         slam_toolbox,
         aruco_node,
         robot_state_publisher_cmd,
-        nav_launch
+        nav_launch,
+        initial_pose_pub
     ])
