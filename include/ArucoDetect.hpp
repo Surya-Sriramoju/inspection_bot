@@ -11,38 +11,32 @@
  * and inspection tasks.
  */
 
-#pragma once
-#include <chrono>
-#include <iostream>
-#include <memory>
-#include <vector>
 
-#include "geometry_msgs/msg/pose.hpp"
-// #include "geometry_msgs/msg/pose_stamped.hpp"
-// #include "nav_msgs/msg/odometry.hpp"
+#ifndef ARUCO_DETECTION_NODE_HPP_
+#define ARUCO_DETECTION_NODE_HPP_
+
 #include "rclcpp/rclcpp.hpp"
+#include "sensor_msgs/msg/image.hpp"
+#include "geometry_msgs/msg/pose_stamped.hpp"
+#include "opencv2/opencv.hpp"
+#include "opencv2/aruco.hpp"
+#include "cv_bridge/cv_bridge.h"
 
-using std::placeholders::_1;
-// using publisher = rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr;
-// using TIMER = rclcpp::TimerBase::SharedPtr;
-// using odom = nav_msgs::msg::Odometry;
-using namespace std::chrono_literals;
-using std::chrono::duration;
-// using bot_pose = geometry_msgs::msg::PoseStamped;
-using ARUCO_TYPE = geometry_msgs::msg::Pose;
+class ArUcoDetectionNode : public rclcpp::Node
+{
+public:
+  ArUcoDetectionNode();
 
-/**
- * @brief Aruco Class
- *
- */
-class ArucoDetect : public rclcpp::Node {
- public:
-  ArucoDetect();
+private:
+  void imageCallback(const sensor_msgs::msg::Image::SharedPtr image_msg);
 
-  /**
-   * @brief This the aruco call back function
-   *
-   * @param aruco_msg
-   */
-  void arucoCallback(const ARUCO_TYPE::SharedPtr aruco_msg);
+  rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_subscriber_;
+  rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr marker_publisher_;
+
+  cv::Ptr<cv::aruco::Dictionary> dictionary_;
+  double marker_length_;
+  cv::Mat camera_matrix_;
+  cv::Mat distortion_coefficients_;
 };
+
+#endif  // ARUCO_DETECTION_NODE_HPP_

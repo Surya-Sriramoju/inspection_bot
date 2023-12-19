@@ -113,7 +113,7 @@ void InspectorBot::inspectionCallback(const odom_pub::SharedPtr odom_msg_i) {
   if ((std::abs(static_cast<int>(odom_msg_i->pose.pose.position.x - goal_x_)) <
        0.5) &&
       (std::abs(static_cast<int>(odom_msg_i->pose.pose.position.y - goal_y_)) ==
-       0)) {
+       0.0)) {
     pose_flag = true;
     RCLCPP_INFO(this->get_logger(), "Now, Inspecting the location!");
   }
@@ -129,4 +129,8 @@ void InspectorBot::continueInspectionCallback(
     RCLCPP_INFO(this->get_logger(),
                 "Reached the base station. Inspection finished!");
   }
+}
+
+bool InspectorBot::isGoalReached() const {
+    return pose_flag;
 }

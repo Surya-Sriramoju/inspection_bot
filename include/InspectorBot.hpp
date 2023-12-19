@@ -16,10 +16,6 @@
 #ifndef INSPECTOR_BOT_HPP_
 #define INSPECTOR_BOT_HPP_
 
-// #include <rclcpp/rclcpp.hpp>
-// #include <geometry_msgs/msg/twist.hpp>
-// #include <sensor_msgs/msg/laser_scan.hpp>
-// #include <nav_msgs/msg/odometry.hpp>
 #include <geometry_msgs/msg/pose.hpp>
 #include <geometry_msgs/msg/pose_stamped.hpp>
 #include <nav_msgs/msg/odometry.hpp>
@@ -50,6 +46,7 @@ using turtlebot_rot = geometry_msgs::msg::Twist;
 class InspectorBot : public rclcpp::Node {
  public:
     InspectorBot();
+    bool isGoalReached() const;
 
     void goToLocation();
 

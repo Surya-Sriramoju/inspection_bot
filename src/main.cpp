@@ -27,10 +27,10 @@ int main(int argc, char **argv) {
     rclcpp::init(argc, argv);
     InspectorBot inspector;
 
-    inspector.setLoc(2.0, 2.0);
+    inspector.setLoc(2.0, 1.0);
     inspector.goToLocation();
     inspector.rotateBot();
-    inspector.setLoc(3.0, 2.0);
+    inspector.setLoc(3.0, 0.0);
     inspector.goToLocation();
     inspector.rotateBot();
     inspector.setLoc(4.0, 0.0);
@@ -44,3 +44,24 @@ int main(int argc, char **argv) {
 
     rclcpp::shutdown();
 }
+
+// int main(int argc, char **argv) {
+//     rclcpp::init(argc, argv);
+//     InspectorBot inspector;
+
+//     std::vector<std::pair<float, float>> goals = {{2.0, 2.0}, {4.0, 0.0}, {4.0, 0.0}, {0.5, 4.0}};
+
+//     for (auto& goal : goals) {
+//         inspector.setLoc(goal.first, goal.second);
+//         inspector.goToLocation();
+
+//         while (!inspector.isGoalReached()) {
+//             rclcpp::spin_some(rclcpp::Node::make_shared("wait_node"));
+//         }
+
+//         inspector.rotateBot();
+//     }
+
+//     inspector.continueInspection();
+//     rclcpp::shutdown();
+// }
