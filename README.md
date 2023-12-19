@@ -1,7 +1,7 @@
 # InspectorBot: Autonomous Industry Inspection System
 
 ![GitHub CI](https://github.com/tarunreddyy/inspector_bot/actions/workflows/ci.yml/badge.svg)
-[![codecov](https://codecov.io/gh/tarunreddyy/inspector_bot/branch/main/graph/badge.svg?token=639bc142-78af-47ce-9058-b08dd74ae79c)](https://codecov.io/gh/tarunreddyy/inspector_bot)
+[![codecov](https://codecov.io/gh/tarunreddyy/inspector_bot/branch/main/graph/badge.svg)](https://codecov.io/gh/tarunreddyy/inspector_bot)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 InspectorBot is an innovative autonomous robot designed for efficient and accurate industry inspection. Utilizing advanced SLAM (Simultaneous Localization and Mapping) techniques, InspectorBot navigates industries autonomously, identifying and marking anomalies using ArUco markers.
