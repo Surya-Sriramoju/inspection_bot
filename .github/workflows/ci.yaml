@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04  # Changed to Ubuntu 20.04 for better compatibility
     
     steps:
       - uses: actions/checkout@v3
@@ -33,7 +33,8 @@ jobs:
           sudo apt update
           sudo apt install -y ros-humble-ros-base python3-colcon-common-extensions
           sudo apt install -y lcov
-          sudo apt install ros-humble-gazebo-ros-pkgs
+          sudo apt install -y libunwind-dev  # Install libunwind-dev
+          sudo apt install -y ros-humble-gazebo-ros-pkgs
           sudo apt install -y ros-humble-turtlebot3  # Install TurtleBot3 packages
 
       - name: Build with coverage
