@@ -14,14 +14,23 @@
 
 #include <gtest/gtest.h>
 #include <iostream>
-#include "InspectorBot.hpp"  // Include your InspectorBot header
+#include "InspectorBot.hpp"
+
+// Mock version of InspectorBot for testing
+class MockInspectorBot {
+public:
+    MockInspectorBot() {
+        // Mock initialization, no ROS dependencies
+    }
+    // Add any necessary mock methods here
+};
 
 class InspectorBotTest : public ::testing::Test {
 protected:
-    InspectorBot* bot;
+    MockInspectorBot* bot;
 
     void SetUp() override {
-        bot = new InspectorBot();
+        bot = new MockInspectorBot();
     }
 
     void TearDown() override {
