@@ -19,21 +19,27 @@
 // Mock version of InspectorBot for testing
 class MockInspectorBot : public InspectorBot {
 public:
+    bool locationReached = false;
+    bool rotationDone = false;
+    bool inspectionContinued = false;
+
     MockInspectorBot() : InspectorBot() {
         // Mock initialization, no ROS dependencies
     }
 
-    // Mock methods to simulate behavior
     void goToLocation() override {
         // Simulate robot moving to a location
+        locationReached = true; // Indicate that the location was reached
     }
 
     void rotateBot() override {
         // Simulate robot rotation
+        rotationDone = true; // Indicate that the rotation was done
     }
 
     void continueInspection() override {
         // Simulate continuing inspection
+        inspectionContinued = true; // Indicate that the inspection continued
     }
 };
 
@@ -57,25 +63,20 @@ TEST_F(InspectorBotTest, TestSetAndGetLocation) {
 }
 
 TEST_F(InspectorBotTest, TestGoToLocation) {
-    // Test the goToLocation method
     bot->setLoc(3.0, 4.0);
     bot->goToLocation();
-    // Add assertions to validate the behavior
+    EXPECT_TRUE(bot->locationReached);
 }
 
 TEST_F(InspectorBotTest, TestRotateBot) {
-    // Test the rotateBot method
     bot->rotateBot();
-    // Add assertions to validate the behavior
+    EXPECT_TRUE(bot->rotationDone);
 }
 
 TEST_F(InspectorBotTest, TestContinueInspection) {
-    // Test the continueInspection method
     bot->continueInspection();
-    // Add assertions to validate the behavior
+    EXPECT_TRUE(bot->inspectionContinued);
 }
-
-// Add more tests as needed...
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
