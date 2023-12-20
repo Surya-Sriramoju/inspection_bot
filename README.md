@@ -1,6 +1,6 @@
 # InspectorBot: Autonomous Industry Inspection System
 
-![GitHub CI](https://github.com/tarunreddyy/inspector_bot/actions/workflows/ci.yml/badge.svg)
+![CICD Workflow status](https://github.com/tarunreddyy/inspector_bot/actions/workflows/ci.yml/badge.svg)
 [![codecov](https://codecov.io/gh/tarunreddyy/inspection_bot/graph/badge.svg?token=EIEIA1AP00)](https://codecov.io/gh/tarunreddyy/inspection_bot)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
