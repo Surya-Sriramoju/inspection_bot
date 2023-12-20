@@ -115,7 +115,7 @@ if(WANT_COVERAGE)
   find_package(GTest REQUIRED)
   include_directories(${GTEST_INCLUDE_DIRS})
 
-  add_executable(test_inspector_bot test/InspectorBotTest.cpp)
+  add_executable(test_inspector_bot test/InspectorBotTest.cpp src/InspectorBot.cpp)
   ament_target_dependencies(test_inspector_bot
     rclcpp
     sensor_msgs
