@@ -23,6 +23,7 @@
  * navigation and inspection in a warehouse environment.
  * 
  * @return int - Returns 0 on successful execution.
+ */
 
 int main(int argc, char **argv) {
     rclcpp::init(argc, argv);
@@ -33,9 +34,7 @@ int main(int argc, char **argv) {
     for (auto& goal : goals) {
         inspector.setLoc(goal.first, goal.second);
         inspector.goToLocation();
-        // rclcpp::sleep_for(7000ms);
         inspector.rotateBot();
-        // rclcpp::sleep_for(2000ms);
     }
 
     inspector.continueInspection();
