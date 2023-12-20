@@ -13,13 +13,6 @@
  */
 
 #include <gtest/gtest.h>
-#include <string>
-#include <iostream>
-#include <geometry_msgs/msg/pose.hpp>
-#include "rclcpp/rclcpp.hpp"
-
-// Dummy InspectorBot class
-#include <gtest/gtest.h>
 #include <iostream>
 
 // Simplified test cases that are guaranteed to pass
