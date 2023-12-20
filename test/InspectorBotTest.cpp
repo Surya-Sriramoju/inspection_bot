@@ -14,6 +14,7 @@
 
 #include <gtest/gtest.h>
 #include <string>
+#include <iostream>
 #include <geometry_msgs/msg/pose.hpp>
 #include "rclcpp/rclcpp.hpp"
 
@@ -103,16 +104,20 @@ protected:
     std::shared_ptr<InspectorBot> inspector_bot;
 
     void SetUp() override {
+        std::cout << "Setting up a new test." << std::endl;
         inspector_bot = std::make_shared<InspectorBot>();
     }
 
     void TearDown() override {
+        std::cout << "Tearing down the test." << std::endl;
         // Cleanup if necessary
     }
 };
 
 TEST_F(InspectorBotTest, GoToLocationTest) {
+    std::cout << "Running GoToLocationTest." << std::endl;
     EXPECT_TRUE(true); // Dummy test, always passes
+    std::cout << "Finished GoToLocationTest." << std::endl;
 }
 
 TEST_F(InspectorBotTest, ContinueInspectionTest) {
@@ -136,9 +141,11 @@ TEST_F(InspectorBotTest, GetLocyTest) {
 }
 
 int main(int argc, char **argv) {
+    std::cout << "Initializing ROS and starting tests." << std::endl;
     rclcpp::init(argc, argv);
     ::testing::InitGoogleTest(&argc, argv);
     int result = RUN_ALL_TESTS();
     rclcpp::shutdown();
+    std::cout << "Tests completed. Shutting down ROS." << std::endl;
     return result;
 }

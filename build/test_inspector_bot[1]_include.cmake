@@ -1,0 +1,5 @@
+if(EXISTS "/home/tarun/ros2_final/src/inspection_bot/build/test_inspector_bot[1]_tests.cmake")
+  include("/home/tarun/ros2_final/src/inspection_bot/build/test_inspector_bot[1]_tests.cmake")
+else()
+  add_test(test_inspector_bot_NOT_BUILT test_inspector_bot_NOT_BUILT)
+endif()

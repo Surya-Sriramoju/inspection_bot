@@ -88,13 +88,14 @@ $(function() {
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  <span class="keywordtype">void</span> imageCallback(<span class="keyword">const</span> sensor_msgs::msg::Image::SharedPtr image_msg);</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  rclcpp::Subscription&lt;sensor_msgs::msg::Image&gt;::SharedPtr image_subscriber_;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  rclcpp::Publisher&lt;geometry_msgs::msg::PoseStamped&gt;::SharedPtr marker_publisher_;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  cv::Ptr&lt;cv::aruco::Dictionary&gt; dictionary_;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  <span class="keywordtype">double</span> marker_length_;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  cv::Mat camera_matrix_;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  cv::Mat distortion_coefficients_;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;};</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  rclcpp::Publisher&lt;geometry_msgs::msg::</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                              PoseStamped&gt;::SharedPtr marker_publisher_;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  cv::Ptr&lt;cv::aruco::Dictionary&gt; dictionary_;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  <span class="keywordtype">double</span> marker_length_;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  cv::Mat camera_matrix_;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  cv::Mat distortion_coefficients_;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;};</div>
 <div class="ttc" id="aclassArUcoDetectionNode_html"><div class="ttname"><a href="classArUcoDetectionNode.html">ArUcoDetectionNode</a></div><div class="ttdoc">The ArUcoDetectionNode class is a ROS2 node for detecting ArUco markers.</div><div class="ttdef"><b>Definition:</b> ArucoDetect.hpp:33</div></div>
 <div class="ttc" id="aclassArUcoDetectionNode_html_ad3099471557900c7933d164593455be5"><div class="ttname"><a href="classArUcoDetectionNode.html#ad3099471557900c7933d164593455be5">ArUcoDetectionNode::ArUcoDetectionNode</a></div><div class="ttdeci">ArUcoDetectionNode()</div><div class="ttdoc">Construct a new ArUco Detection Node object.</div><div class="ttdef"><b>Definition:</b> ArucoDetect.cpp:22</div></div>
 </div><!-- fragment --></div><!-- contents -->
