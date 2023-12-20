@@ -4,7 +4,7 @@
  * @file InspectorBot.cpp
  * @author Tarun Trilokesh
  * @author Sai Surya Sriramoju
- * @date 12/12/2023
+ * @date 12/20/2023
  * @version 1.0
  * 
  * @brief InspectorBot class implementation.
@@ -16,11 +16,22 @@
 #include "InspectorBot.hpp"
 
 
+/**
+ * @brief Constructor for the InspectorBot class.
+ * 
+ * Initializes the node and sets the initial position of the robot.
+ */
 InspectorBot::InspectorBot() : Node("inspector_bot") {
     current_position.position.x = 0.0;
     next_position.position.x = 0.0;
 }
 
+/**
+ * @brief Moves the robot to a specified location.
+ * 
+ * This method publishes a goal pose to the robot and continuously checks
+ * the robot's odometry to determine when it has reached the goal.
+ */
 void InspectorBot::goToLocation() {
     pose_publisher_ = this->create_publisher<turtlebot_pose>("/goal_pose", 10);
     std::shared_ptr<rclcpp::Node> odom_node =
@@ -50,15 +61,37 @@ void InspectorBot::goToLocation() {
     pose_flag = false;
 }
 
+/**
+ * @brief Sets the goal location for the robot.
+ * 
+ * @param x X-coordinate of the goal location.
+ * @param y Y-coordinate of the goal location.
+ */
 void InspectorBot::setLoc(float x, float y) {
   goal_x_ = x;
   goal_y_ = y;
 }
 
+/**
+ * @brief Gets the x-coordinate of the goal location.
+ * 
+ * @return float X-coordinate of the goal.
+ */
 float InspectorBot::getLocx() { return goal_x_; }
 
+/**
+ * @brief Gets the y-coordinate of the goal location.
+ * 
+ * @return float Y-coordinate of the goal.
+ */
 float InspectorBot::getLocy() { return goal_y_; }
 
+/**
+ * @brief Rotates the robot to inspect the surrounding area.
+ * 
+ * This method rotates the robot in place, allowing it to inspect its
+ * surroundings at the current location.
+ */
 void InspectorBot::rotateBot() {
   twist_publisher_ = this->create_publisher<turtlebot_rot>("/cmd_vel", 10);
 
@@ -85,6 +118,12 @@ void InspectorBot::rotateBot() {
   }
 }
 
+/**
+ * @brief Continues the inspection process after reaching a goal.
+ * 
+ * This method is used to navigate the robot back to the base station
+ * after completing an inspection at a goal location.
+ */
 void InspectorBot::continueInspection() {
   std::shared_ptr<rclcpp::Node> odom_node_1 =
       rclcpp::Node::make_shared("odom_node_1");
@@ -114,6 +153,11 @@ void InspectorBot::continueInspection() {
   }
 }
 
+/**
+ * @brief Callback function for processing odometry messages during inspection.
+ * 
+ * @param odom_msg_i Shared pointer to the odometry message.
+ */
 void InspectorBot::inspectionCallback(const odom_pub::SharedPtr odom_msg_i) {
   if ((std::abs(static_cast<int>(odom_msg_i->pose.pose.position.x - goal_x_)) <
        0.5) &&
@@ -124,7 +168,11 @@ void InspectorBot::inspectionCallback(const odom_pub::SharedPtr odom_msg_i) {
   }
 }
 
-
+/**
+ * @brief Callback function for processing odometry messages when returning to base.
+ * 
+ * @param odom_msg_r Shared pointer to the odometry message.
+ */
 void InspectorBot::continueInspectionCallback(
     const odom_pub::SharedPtr odom_msg_r) {
   if ((std::abs(static_cast<int>(odom_msg_r->pose.pose.position.x)) == 0) &&

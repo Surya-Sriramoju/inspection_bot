@@ -1,3 +1,8 @@
+Done processing ./include/ArucoDetect.hpp
 Done processing ./include/InspectorBot.hpp
+Done processing ./src/ArucoDetect.cpp
+Done processing ./src/ArucoMain.cpp
 Done processing ./src/InspectorBot.cpp
 Done processing ./src/main.cpp
+Done processing ./test/InspectorBotTest.cpp
+Total errors found: 3

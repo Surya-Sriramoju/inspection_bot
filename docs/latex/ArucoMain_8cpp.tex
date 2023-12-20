@@ -1,0 +1,59 @@
+\hypertarget{ArucoMain_8cpp}{}\doxysection{src/\+Aruco\+Main.cpp File Reference}
+\label{ArucoMain_8cpp}\index{src/ArucoMain.cpp@{src/ArucoMain.cpp}}
+
+
+Main file for launching the Ar\+Uco detection node.  
+
+
+{\ttfamily \#include \char`\"{}Aruco\+Detect.\+hpp\char`\"{}}\newline
+Include dependency graph for Aruco\+Main.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ArucoMain_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ArucoMain_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Main function for the Ar\+Uco detection node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main file for launching the Ar\+Uco detection node. 
+
+\begin{DoxyAuthor}{Author}
+Sai Surya Sriramoju 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+12/20/2023 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0
+\end{DoxyVersion}
+This file contains the main function to initialize and run the \mbox{\hyperlink{classArUcoDetectionNode}{Ar\+Uco\+Detection\+Node}}, which is responsible for detecting Ar\+Uco markers in images. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ArucoMain_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\label{ArucoMain_8cpp_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{ArucoMain.cpp@{ArucoMain.cpp}!main@{main}}
+\index{main@{main}!ArucoMain.cpp@{ArucoMain.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Main function for the Ar\+Uco detection node. 
+
+Initializes the ROS2 node, creates an instance of \mbox{\hyperlink{classArUcoDetectionNode}{Ar\+Uco\+Detection\+Node}}, and runs the node until it\textquotesingle{}s shut down. This is the entry point for the Ar\+Uco marker detection functionality.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Argument count. \\
+\hline
+{\em argv} & Argument vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Execution status code. 
+\end{DoxyReturn}

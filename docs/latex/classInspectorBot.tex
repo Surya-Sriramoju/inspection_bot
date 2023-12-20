@@ -1,0 +1,166 @@
+\hypertarget{classInspectorBot}{}\doxysection{Inspector\+Bot Class Reference}
+\label{classInspectorBot}\index{InspectorBot@{InspectorBot}}
+
+
+The \mbox{\hyperlink{classInspectorBot}{Inspector\+Bot}} class.  
+
+
+
+
+{\ttfamily \#include $<$Inspector\+Bot.\+hpp$>$}
+
+
+
+Inheritance diagram for Inspector\+Bot\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=158pt]{classInspectorBot__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Inspector\+Bot\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=158pt]{classInspectorBot__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classInspectorBot_a3fdd71887311b24707da7ae0ba628e9c}{Inspector\+Bot}} ()
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{classInspectorBot}{Inspector\+Bot}} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInspectorBot_af1f2778dbcffd385f8df5321ad1c1051}{go\+To\+Location}} ()
+\begin{DoxyCompactList}\small\item\em moves the robot to a specific location using the navigation stack \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInspectorBot_a3260c4a22bb2f45272504c1b656f3e0c}{continue\+Inspection}} ()
+\begin{DoxyCompactList}\small\item\em This method resumes the inspection after reaching a goal. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInspectorBot_a730ecc4d603419cc8913d5e5def36b40}{rotate\+Bot}} ()
+\begin{DoxyCompactList}\small\item\em This function controls the rotation of the bot after reaching a specific goal. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInspectorBot_aa5ac7f4e531b7fabe344f8438e2280aa}{set\+Loc}} (float x, float y)
+\begin{DoxyCompactList}\small\item\em Set the goal pose. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classInspectorBot_afb1a17c2c8f1a9755f081e9f53846cd6}{get\+Locx}} ()
+\begin{DoxyCompactList}\small\item\em Get the x coordinate of goal. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classInspectorBot_a37914fc8ffc10962efa0511accdc528f}{get\+Locy}} ()
+\begin{DoxyCompactList}\small\item\em Get the y coordinate of the goal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{classInspectorBot}{Inspector\+Bot}} class. 
+
+This class encapsulates methods and attributes for autonomous navigation and inspection using SLAM and Ar\+Uco markers. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classInspectorBot_a3fdd71887311b24707da7ae0ba628e9c}\label{classInspectorBot_a3fdd71887311b24707da7ae0ba628e9c}} 
+\index{InspectorBot@{InspectorBot}!InspectorBot@{InspectorBot}}
+\index{InspectorBot@{InspectorBot}!InspectorBot@{InspectorBot}}
+\doxysubsubsection{\texorpdfstring{InspectorBot()}{InspectorBot()}}
+{\footnotesize\ttfamily Inspector\+Bot\+::\+Inspector\+Bot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor for the \mbox{\hyperlink{classInspectorBot}{Inspector\+Bot}} class. 
+
+Initializes the node and sets the initial position of the robot. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classInspectorBot_a3260c4a22bb2f45272504c1b656f3e0c}\label{classInspectorBot_a3260c4a22bb2f45272504c1b656f3e0c}} 
+\index{InspectorBot@{InspectorBot}!continueInspection@{continueInspection}}
+\index{continueInspection@{continueInspection}!InspectorBot@{InspectorBot}}
+\doxysubsubsection{\texorpdfstring{continueInspection()}{continueInspection()}}
+{\footnotesize\ttfamily void Inspector\+Bot\+::continue\+Inspection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This method resumes the inspection after reaching a goal. 
+
+Continues the inspection process after reaching a goal.
+
+This method is used to navigate the robot back to the base station after completing an inspection at a goal location. \mbox{\Hypertarget{classInspectorBot_afb1a17c2c8f1a9755f081e9f53846cd6}\label{classInspectorBot_afb1a17c2c8f1a9755f081e9f53846cd6}} 
+\index{InspectorBot@{InspectorBot}!getLocx@{getLocx}}
+\index{getLocx@{getLocx}!InspectorBot@{InspectorBot}}
+\doxysubsubsection{\texorpdfstring{getLocx()}{getLocx()}}
+{\footnotesize\ttfamily float Inspector\+Bot\+::get\+Locx (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the x coordinate of goal. 
+
+Gets the x-\/coordinate of the goal location.
+
+\begin{DoxyReturn}{Returns}
+float
+
+float X-\/coordinate of the goal. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInspectorBot_a37914fc8ffc10962efa0511accdc528f}\label{classInspectorBot_a37914fc8ffc10962efa0511accdc528f}} 
+\index{InspectorBot@{InspectorBot}!getLocy@{getLocy}}
+\index{getLocy@{getLocy}!InspectorBot@{InspectorBot}}
+\doxysubsubsection{\texorpdfstring{getLocy()}{getLocy()}}
+{\footnotesize\ttfamily float Inspector\+Bot\+::get\+Locy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the y coordinate of the goal. 
+
+Gets the y-\/coordinate of the goal location.
+
+\begin{DoxyReturn}{Returns}
+float
+
+float Y-\/coordinate of the goal. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInspectorBot_af1f2778dbcffd385f8df5321ad1c1051}\label{classInspectorBot_af1f2778dbcffd385f8df5321ad1c1051}} 
+\index{InspectorBot@{InspectorBot}!goToLocation@{goToLocation}}
+\index{goToLocation@{goToLocation}!InspectorBot@{InspectorBot}}
+\doxysubsubsection{\texorpdfstring{goToLocation()}{goToLocation()}}
+{\footnotesize\ttfamily void Inspector\+Bot\+::go\+To\+Location (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+moves the robot to a specific location using the navigation stack 
+
+Moves the robot to a specified location.
+
+This method publishes a goal pose to the robot and continuously checks the robot\textquotesingle{}s odometry to determine when it has reached the goal. \mbox{\Hypertarget{classInspectorBot_a730ecc4d603419cc8913d5e5def36b40}\label{classInspectorBot_a730ecc4d603419cc8913d5e5def36b40}} 
+\index{InspectorBot@{InspectorBot}!rotateBot@{rotateBot}}
+\index{rotateBot@{rotateBot}!InspectorBot@{InspectorBot}}
+\doxysubsubsection{\texorpdfstring{rotateBot()}{rotateBot()}}
+{\footnotesize\ttfamily void Inspector\+Bot\+::rotate\+Bot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This function controls the rotation of the bot after reaching a specific goal. 
+
+Rotates the robot to inspect the surrounding area.
+
+This method rotates the robot in place, allowing it to inspect its surroundings at the current location. \mbox{\Hypertarget{classInspectorBot_aa5ac7f4e531b7fabe344f8438e2280aa}\label{classInspectorBot_aa5ac7f4e531b7fabe344f8438e2280aa}} 
+\index{InspectorBot@{InspectorBot}!setLoc@{setLoc}}
+\index{setLoc@{setLoc}!InspectorBot@{InspectorBot}}
+\doxysubsubsection{\texorpdfstring{setLoc()}{setLoc()}}
+{\footnotesize\ttfamily void Inspector\+Bot\+::set\+Loc (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y }\end{DoxyParamCaption})}
+
+
+
+Set the goal pose. 
+
+Sets the goal location for the robot.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & \\
+\hline
+{\em y} & \\
+\hline
+{\em x} & X-\/coordinate of the goal location. \\
+\hline
+{\em y} & Y-\/coordinate of the goal location. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{InspectorBot_8hpp}{Inspector\+Bot.\+hpp}}\item 
+src/\mbox{\hyperlink{InspectorBot_8cpp}{Inspector\+Bot.\+cpp}}\end{DoxyCompactItemize}

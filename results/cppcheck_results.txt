@@ -1,0 +1,9 @@
+[1msrc/InspectorBot.cpp:40:26: [31mstyle:[39m Variable 'odom_subscriber' is assigned a value that is never used. [unreadVariable][0m
+    auto odom_subscriber = odom_node->create_subscription<odom_pub>(
+                         ^
+[1msrc/InspectorBot.cpp:131:24: [31mstyle:[39m Variable 'odom_subscriber' is assigned a value that is never used. [unreadVariable][0m
+  auto odom_subscriber = odom_node_1->create_subscription<odom_pub>(
+                       ^
+[1mtest/InspectorBotTest.cpp:23:20: [31merror:[39m Unmatched '{'. Configuration: ''. [syntaxError][0m
+class InspectorBot {
+                   ^

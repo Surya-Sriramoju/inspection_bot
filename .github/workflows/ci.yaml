@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - name: Install ROS 2 Humble packages
+      - name: Setup ROS 2 Repository
         run: |
           sudo apt update
           sudo apt install -y software-properties-common
@@ -27,6 +27,9 @@ jobs:
             http://packages.ros.org/ros2/ubuntu \
             $(. /etc/os-release && echo $UBUNTU_CODENAME) main" \
             | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+
+      - name: Install ROS 2 Humble and Dependencies
+        run: |
           sudo apt update
           sudo apt install -y ros-humble-ros-base python3-colcon-common-extensions
           sudo apt install -y lcov
@@ -36,20 +39,16 @@ jobs:
         run: |
           source /opt/ros/humble/setup.bash
           colcon build --cmake-args -DCOVERAGE=1 --packages-select inspection_bot
-          cat log/latest_build/inspection_bot/stdout_stderr.log
-          find build/inspection_bot/ | grep -E 'gcno'
 
-      - name: Run tests and check code
+      - name: Run tests
         run: |
           source /opt/ros/humble/setup.bash
           colcon test --packages-select inspection_bot
-          cat log/latest_test/inspection_bot/stdout_stderr.log
-          find build/inspection_bot/ | grep -E 'gcda'
           colcon test-result --verbose
 
       - name: Generate test coverage report
         run: |
-          source install/setup.bash
+          source /opt/ros/humble/setup.bash
           lcov --directory build/inspection_bot/ --capture --output-file coverage.info
           lcov --remove coverage.info '/opt/ros/*' '*/test/*' --output-file coverage_cleaned.info
           lcov --list coverage_cleaned.info
