@@ -29,7 +29,9 @@ int main(int argc, char **argv) {
     rclcpp::init(argc, argv);
     InspectorBot inspector;
 
-    std::vector<std::pair<float, float>> goals = {{1.5, 2.0}, {2.0, -1.0}, {0.0, -2.7}};
+    std::vector<std::pair<float, float>> goals = {
+        {1.5, 2.0}, {2.0, -1.0}, {0.0, -2.7}
+        };
 
     for (auto& goal : goals) {
         inspector.setLoc(goal.first, goal.second);
@@ -39,4 +41,6 @@ int main(int argc, char **argv) {
 
     inspector.continueInspection();
     rclcpp::shutdown();
+
+    return 0;
 }
