@@ -12,8 +12,6 @@
  * @version 1.0
  */
 
-// InspectorBotTest.cpp
-
 #include <gtest/gtest.h>
 #include <string>
 #include <geometry_msgs/msg/pose.hpp>
@@ -21,7 +19,7 @@
 
 // Dummy InspectorBot class
 class InspectorBot {
-  public:
+public:
     InspectorBot() {
         // Initialize position and orientation
         current_position.position.x = 0.0;
@@ -31,21 +29,23 @@ class InspectorBot {
         current_position.orientation.y = 0.0;
         current_position.orientation.z = 0.0;
         current_position.orientation.w = 1.0;
+        orientation = 0.0;
+        goal_x = 0.0;
+        goal_y = 0.0;
+        locationReached = false;
+    }
 
     void goToLocation() {
-        // Dummy implementation
         current_position.position.x = goal_x;
         current_position.position.y = goal_y;
         locationReached = true;
     }
 
     void continueInspection() {
-        // Dummy implementation
         state = "Inspecting";
     }
 
     void rotateBot() {
-        // Dummy implementation
         orientation = 1.0;
     }
 
@@ -86,28 +86,24 @@ class InspectorBot {
         return locationReached;
     }
 
-  private:
+private:
     geometry_msgs::msg::Pose current_position;
     std::string state;
     double orientation;
     float goal_x, goal_y;
-    bool locationReached = false;
-}
+    bool locationReached;
+};
 
 /**
  * @class InspectorBotTest
  * @brief Test Fixture for testing the InspectorBot class.
- *
- * This fixture is used for setting up the environment for each test case
- * of the InspectorBot class and cleaning up after execution.
  */
 class InspectorBotTest : public ::testing::Test {
-  protected:
+protected:
     std::shared_ptr<InspectorBot> inspector_bot;
 
     void SetUp() override {
         inspector_bot = std::make_shared<InspectorBot>();
-        // Additional setup if needed
     }
 
     void TearDown() override {
@@ -115,47 +111,23 @@ class InspectorBotTest : public ::testing::Test {
     }
 };
 
-/**
- * @brief Test case for goToLocation method of InspectorBot.
- *
- * Validates if the robot is set to the correct location after calling goToLocation.
- */
 TEST_F(InspectorBotTest, GoToLocationTest) {
     inspector_bot->setLoc(5.0, 5.0);
     inspector_bot->goToLocation();
     EXPECT_TRUE(inspector_bot->hasReachedLocation());
 }
 
-/**
- * @brief Test case for continueInspection method of InspectorBot.
- *
- * Validates if the state of the robot is set correctly after calling continueInspection.
- */
 TEST_F(InspectorBotTest, ContinueInspectionTest) {
     inspector_bot->setState("Paused");
     inspector_bot->continueInspection();
-    auto state = inspector_bot->getState();
-    EXPECT_EQ("Inspecting", state);
+    EXPECT_EQ("Inspecting", inspector_bot->getState());
 }
 
-
-/**
- * @brief Test case for rotateBot method of InspectorBot.
- *
- * Validates if the orientation of the robot changes after calling rotateBot.
- */
 TEST_F(InspectorBotTest, RotateBotTest) {
     inspector_bot->setOrientation(0);
     inspector_bot->rotateBot();
-    auto orientation = inspector_bot->getOrientation();
-    EXPECT_NE(0, orientation);
+    EXPECT_NE(0, inspector_bot->getOrientation());
 }
-
-/**
- * @brief Test case for setLoc method of InspectorBot.
- *
- * Validates if the goal location is set correctly in the robot.
- */
 
 TEST_F(InspectorBotTest, SetLocTest) {
     float x = 10.0, y = 20.0;
@@ -164,31 +136,18 @@ TEST_F(InspectorBotTest, SetLocTest) {
     EXPECT_EQ(y, inspector_bot->getLocy());
 }
 
-/**
- * @brief Test case for getLocx method of InspectorBot.
- *
- * Validates if the x-coordinate of the goal location is retrieved correctly.
- */
 TEST_F(InspectorBotTest, GetLocxTest) {
     float expected_x = 10.0;
     inspector_bot->setLoc(expected_x, 0.0);
-    float x = inspector_bot->getLocx();
-    EXPECT_EQ(expected_x, x);
+    EXPECT_EQ(expected_x, inspector_bot->getLocx());
 }
 
-/**
- * @brief Test case for getLocy method of InspectorBot.
- *
- * Validates if the y-coordinate of the goal location is retrieved correctly.
- */
 TEST_F(InspectorBotTest, GetLocyTest) {
     float expected_y = 20.0;
     inspector_bot->setLoc(0.0, expected_y);
-    float y = inspector_bot->getLocy();
-    EXPECT_EQ(expected_y, y);
+    EXPECT_EQ(expected_y, inspector_bot->getLocy());
 }
 
-// Main function running all tests
 int main(int argc, char **argv) {
     rclcpp::init(argc, argv);
     ::testing::InitGoogleTest(&argc, argv);
