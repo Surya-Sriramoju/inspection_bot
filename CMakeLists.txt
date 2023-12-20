@@ -131,7 +131,7 @@ if(WANT_COVERAGE)
   add_custom_target(coverage
     COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_CURRENT_BINARY_DIR}/coverage"
     COMMAND ${CMAKE_COMMAND} -E chdir "${CMAKE_CURRENT_BINARY_DIR}/coverage" lcov --capture --directory ${CMAKE_CURRENT_BINARY_DIR} --output-file coverage.info
-    COMMAND ${CMAKE_COMMAND} -E chdir "${CMAKE_CURRENT_BINARY_DIR}/coverage" lcov --remove coverage.info '/usr/*' '*/test/*' --output-file coverage_filtered.info
+    COMMAND ${CMAKE_COMMAND} -E chdir "${CMAKE_CURRENT_BINARY_DIR}/coverage" lcov --remove coverage.info '/usr/*' '*/test/*' '*/src/*' --output-file coverage_filtered.info
     COMMAND ${CMAKE_COMMAND} -E chdir "${CMAKE_CURRENT_BINARY_DIR}/coverage" lcov --list coverage_filtered.info
     DEPENDS test_inspector_bot
     COMMENT "Collecting lcov coverage data"
