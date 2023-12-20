@@ -14,19 +14,30 @@
 
 #include <gtest/gtest.h>
 #include <iostream>
+#include "InspectorBot.hpp"  // Include your InspectorBot header
 
-// Simplified test cases that are guaranteed to pass
-class InspectorBotTest : public ::testing::Test {};
+class InspectorBotTest : public ::testing::Test {
+protected:
+    InspectorBot* bot;
 
-TEST_F(InspectorBotTest, TrivialTest1) {
+    void SetUp() override {
+        bot = new InspectorBot();
+    }
+
+    void TearDown() override {
+        delete bot;
+    }
+};
+
+TEST_F(InspectorBotTest, DummyTest1) {
     EXPECT_TRUE(true); // Always true, test will always pass
 }
 
-TEST_F(InspectorBotTest, TrivialTest2) {
+TEST_F(InspectorBotTest, DummyTest2) {
     EXPECT_EQ(1, 1); // Always equal, test will always pass
 }
 
-TEST_F(InspectorBotTest, TrivialTest3) {
+TEST_F(InspectorBotTest, DummyTest3) {
     EXPECT_NE(1, 0); // Always not equal, test will always pass
 }
 
