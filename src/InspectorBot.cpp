@@ -67,16 +67,28 @@ float InspectorBot::getLocy() { return goal_y_; }
 void InspectorBot::rotateBot() {
   twist_publisher_ = this->create_publisher<turtlebot_rot>("/cmd_vel", 10);
 
-  bot_check_.angular.z = 0.5;
+  // bot_check_.angular.z = 0.5;
 
-  int count = 25;
+  int count = 20;
 
   while (count) {
-    rclcpp::spin_some(bot_rotate_node);
-    twist_publisher_->publish(bot_check_);
-    RCLCPP_INFO(this->get_logger(), "Looking around..");
-    count--;
-    rclcpp::sleep_for(500ms);
+    if (count <= 10) {
+      bot_check_.angular.z = 1.8;
+      rclcpp::spin_some(bot_rotate_node);
+      twist_publisher_->publish(bot_check_);
+      RCLCPP_INFO(this->get_logger(), "Looking around..");
+      count--;
+      rclcpp::sleep_for(500ms);
+    }
+
+    else {
+      bot_check_.angular.z = -1.8;
+      rclcpp::spin_some(bot_rotate_node);
+      twist_publisher_->publish(bot_check_);
+      RCLCPP_INFO(this->get_logger(), "Looking around..");
+      count--;
+      rclcpp::sleep_for(500ms);
+    }
   }
 }
 
