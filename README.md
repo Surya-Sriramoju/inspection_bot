@@ -72,6 +72,10 @@ Follow these steps to set up and run the InspectorBot:
 
 # Launch the InspectorBot in Gazebo:
   ros2 launch inspector_bot launch_inspection_bot.launch.py
+# run the inspector bot node:
+  ros2 run inspection_bot inspector_bot_node
+# run the aruco detection node:
+  ros2 run inspection_bot detect_aruco
 ```
 
 ## Key Features
