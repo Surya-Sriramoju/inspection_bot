@@ -3,6 +3,7 @@
 /**
  * @file InspectorBot.cpp
  * @author Tarun Trilokesh
+ * @author Sai Surya Sriramoju
  * @date 12/12/2023
  * @version 1.0
  * 
@@ -14,14 +15,8 @@
 
 #include "InspectorBot.hpp"
 
-/**
- * @brief Constructor for the InspectorBot class.
- * 
- * Initializes the ROS 2 node, sets up publishers and subscribers, and
- * configures parameters for autonomous navigation and inspection.
- */
-InspectorBot::InspectorBot() : Node("inspector_bot") {
 
+InspectorBot::InspectorBot() : Node("inspector_bot") {
     current_position.position.x = 0.0;
     next_position.position.x = 0.0;
 }
@@ -30,7 +25,7 @@ void InspectorBot::goToLocation() {
     pose_publisher_ = this->create_publisher<turtlebot_pose>("/goal_pose", 10);
     std::shared_ptr<rclcpp::Node> odom_node =
       rclcpp::Node::make_shared("odom_node");
-    
+
     auto odom_subscriber = odom_node->create_subscription<odom_pub>(
       "odom", 10, std::bind(&InspectorBot::inspectionCallback, this, _1));
 
@@ -46,7 +41,7 @@ void InspectorBot::goToLocation() {
     goal_pose_.pose.orientation.z = 0;
     goal_pose_.pose.orientation.w = 1;
 
-    while(!pose_flag) {
+    while (!pose_flag) {
         rclcpp::spin_some(odom_node);
         pose_publisher_->publish(goal_pose_);
         RCLCPP_INFO(this->get_logger(), "Moving to inspect location");
@@ -67,26 +62,36 @@ float InspectorBot::getLocy() { return goal_y_; }
 void InspectorBot::rotateBot() {
   twist_publisher_ = this->create_publisher<turtlebot_rot>("/cmd_vel", 10);
 
-  bot_check_.angular.z = 0.5;
+  // bot_check_.angular.z = 0.5;
 
-  int count = 25;
+  int count = 20;
 
   while (count) {
-    rclcpp::spin_some(bot_rotate_node);
-    twist_publisher_->publish(bot_check_);
-    RCLCPP_INFO(this->get_logger(), "Looking around..");
-    count--;
-    rclcpp::sleep_for(500ms);
+    if (count <= 10) {
+      bot_check_.angular.z = 1.8;
+      rclcpp::spin_some(bot_rotate_node);
+      twist_publisher_->publish(bot_check_);
+      RCLCPP_INFO(this->get_logger(), "Looking around..");
+      count--;
+      rclcpp::sleep_for(500ms);
+    } else {
+      bot_check_.angular.z = -1.8;
+      rclcpp::spin_some(bot_rotate_node);
+      twist_publisher_->publish(bot_check_);
+      RCLCPP_INFO(this->get_logger(), "Looking around..");
+      count--;
+      rclcpp::sleep_for(500ms);
+    }
   }
 }
 
 void InspectorBot::continueInspection() {
-
   std::shared_ptr<rclcpp::Node> odom_node_1 =
       rclcpp::Node::make_shared("odom_node_1");
 
   auto odom_subscriber = odom_node_1->create_subscription<odom_pub>(
-      "odom", 10, std::bind(&InspectorBot::continueInspectionCallback, this, _1));
+      "odom", 10, std::bind(&InspectorBot::continueInspectionCallback,
+      this, _1));
 
   turtlebot_pose goal_pose_1;
 
@@ -129,8 +134,4 @@ void InspectorBot::continueInspectionCallback(
     RCLCPP_INFO(this->get_logger(),
                 "Reached the base station. Inspection finished!");
   }
-}
-
-bool InspectorBot::isGoalReached() const {
-    return pose_flag;
 }

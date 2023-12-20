@@ -36,6 +36,10 @@ The quad chart provides a visual summary of InspectorBot's capabilities and deve
 
 [Product Backlog Google Sheet](https://docs.google.com/spreadsheets/d/1riEoFAD4eDPTp7oa7tnZANUklh0wJGMXKnpVL7vbjc4/edit?usp=sharing)
 
+## Sprint Review
+
+[Sprint Review Doc](https://docs.google.com/document/d/1LO78YJ8UPMQ4lM8xCVnNeccR0AnmnZlA-wpxU4um7co/edit?usp=sharing)
+
 ## The video explanation of the phase one of this project can be found [here](https://drive.google.com/file/d/1vZ3_9K9WZzgpQl5QuAfxAEsRZVFMnTK0/view?usp=sharing)
 
 ## Technologies and Tools
@@ -68,6 +72,10 @@ Follow these steps to set up and run the InspectorBot:
 
 # Launch the InspectorBot in Gazebo:
   ros2 launch inspector_bot launch_inspection_bot.launch.py
+# run the inspector bot node:
+  ros2 run inspection_bot inspector_bot_node
+# run the aruco detection node:
+  ros2 run inspection_bot detect_aruco
 ```
 
 ## Key Features
