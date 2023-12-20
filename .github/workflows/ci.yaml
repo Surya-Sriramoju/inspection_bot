@@ -37,10 +37,16 @@ jobs:
           sudo apt install -y ros-humble-gazebo-ros-pkgs
           sudo apt install -y ros-humble-turtlebot3  # Install TurtleBot3 packages
 
+      - name: Install Doxygen
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen
+
       - name: Build with coverage
         run: |
           source /opt/ros/humble/setup.bash
           colcon build --cmake-args -DCOVERAGE=1 --packages-select inspection_bot
+
 
       - name: Run tests
         run: |
